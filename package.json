@@ -1,0 +1,27 @@
+{
+  "name": "w1-text-analyzer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:dev": "tsc -w",
+    "build": "tsc",
+    "start": "serve public",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.1",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "netlify": "^13.1.14"
+  }
+}
