@@ -1,6 +1,4 @@
-import { Tale, Board } from "./types";
-
-const tale: Tale = {
+const tale = {
   hasMine: false,
   totalNearMines: 0,
 };
@@ -8,8 +6,7 @@ const taleWithBomb = {
   hasMine: true,
   totalNearMines: 0,
 };
-
-const board: Board = {
+const board = {
   row: [tale, tale, tale],
   column: [
     [tale, tale, tale],
@@ -17,3 +14,5 @@ const board: Board = {
     [tale, tale, tale],
   ],
 };
+console.log(board);
+//# sourceMappingURL=index.js.map
