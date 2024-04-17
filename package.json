@@ -8,14 +8,18 @@
     "build:dev": "tsc -w",
     "build": "tsc",
     "start": "serve public",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commitlint": "commitlint --edit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/node": "^20.11.30",
     "husky": "^9.0.11",
+    "jest-ts-webcompat-resolver": "^1.0.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "serve": "^14.2.1",
