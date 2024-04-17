@@ -4,6 +4,7 @@ export interface Tale {
 }
 
 export interface Board {
-  row: Tale[];
-  column: Tale[][];
+  rows: number;
+  columns: number;
+  boardDisplay: Tale[][];
 }

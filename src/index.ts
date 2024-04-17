@@ -4,16 +4,20 @@ const tale: Tale = {
   hasMine: false,
   totalNearMines: 0,
 };
-const taleWithBomb = {
+const bombTale = {
   hasMine: true,
   totalNearMines: 0,
 };
 
 const board: Board = {
-  row: [tale, tale, tale],
-  column: [
-    [tale, tale, tale],
-    [tale, taleWithBomb, tale],
-    [tale, tale, tale],
+  rows: 6,
+  columns: 6,
+  boardDisplay: [
+    [bombTale, tale, tale, tale, tale, tale],
+    [tale, tale, tale, tale, tale, tale],
+    [tale, tale, bombTale, tale, tale, tale],
+    [tale, tale, tale, tale, tale, tale],
+    [tale, bombTale, tale, tale, tale, tale],
+    [tale, tale, tale, tale, tale, tale],
   ],
 };
