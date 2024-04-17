@@ -1,10 +1,10 @@
-import { Tale, Board } from "./types";
+import { Tile, Board } from "./types";
 
-const tale: Tale = {
+const tile: Tile = {
   hasMine: false,
   totalNearMines: 0,
 };
-const bombTale = {
+const bombTile: Tile = {
   hasMine: true,
   totalNearMines: 0,
 };
@@ -13,11 +13,8 @@ const board: Board = {
   rows: 6,
   columns: 6,
   boardDisplay: [
-    [bombTale, tale, tale, tale, tale, tale],
-    [tale, tale, tale, tale, tale, tale],
-    [tale, tale, bombTale, tale, tale, tale],
-    [tale, tale, tale, tale, tale, tale],
-    [tale, bombTale, tale, tale, tale, tale],
-    [tale, tale, tale, tale, tale, tale],
+    [tile, tile, tile],
+    [tile, bombTile, tile],
+    [tile, tile, tile],
   ],
 };
