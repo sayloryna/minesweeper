@@ -1,4 +1,4 @@
-export interface Tale {
+export interface Tile {
   hasMine: boolean;
   totalNearMines: number;
 }
@@ -6,5 +6,5 @@ export interface Tale {
 export interface Board {
   rows: number;
   columns: number;
-  boardDisplay: Tale[][];
+  boardDisplay: Tile[][];
 }

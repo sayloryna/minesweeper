@@ -1,18 +1,22 @@
-const tale = {
-  hasMine: false,
-  totalNearMines: 0,
+const tile = {
+    hasMine: false,
+    totalNearMines: 0,
 };
-const taleWithBomb = {
-  hasMine: true,
-  totalNearMines: 0,
+const bombTile = {
+    hasMine: true,
+    totalNearMines: 0,
 };
 const board = {
-  row: [tale, tale, tale],
-  column: [
-    [tale, tale, tale],
-    [tale, taleWithBomb, tale],
-    [tale, tale, tale],
-  ],
+    rows: 6,
+    columns: 6,
+    boardDisplay: [
+        [tile, tile, tile],
+        [tile, bombTile, tile],
+        [tile, tile, tile],
+    ],
 };
-console.log(board);
+console.log(JSON.stringify(board));
+board.boardDisplay[0][0].hasMine = true;
+console.log(JSON.stringify(board));
+export {};
 //# sourceMappingURL=index.js.map
