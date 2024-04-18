@@ -18,14 +18,54 @@ const board: Board = {
   ],
 };
 
-const searchTotalMines = (board: Board) => {
-  let totalMines = 0;
-  board.tiles.forEach((row) => {
-    row.forEach((tile) => {
-      if (tile.hasMine === true) {
-        totalMines++;
+const addNearMines = (tiles: Tile[][]) => {
+  for (let row = 0; row <= 2; row++) {
+    for (let column = 0; column <= 2; column++) {
+      if (row + 1 <= 2 && tiles[row + 1][column].hasMine) {
+        tiles[row][column].totalNearMines++;
       }
-    });
-  });
-  return totalMines;
+      if (
+        row + 1 <= 2 &&
+        column - 1 >= 0 &&
+        tiles[row + 1][column - 1].hasMine
+      ) {
+        tiles[row][column].totalNearMines++;
+      }
+      if (
+        row + 1 <= 2 &&
+        column + 1 <= 2 &&
+        tiles[row + 1][column + 1].hasMine
+      ) {
+        tiles[row][column].totalNearMines++;
+      }
+
+      if (column + 1 <= 2 && tiles[row][column + 1].hasMine) {
+        tiles[row][column].totalNearMines++;
+      }
+      if (column - 1 >= 0 && tiles[row][column - 1].hasMine) {
+        tiles[row][column].totalNearMines++;
+      }
+
+      if (row - 1 >= 0 && tiles[row - 1][column].hasMine) {
+        tiles[row][column].totalNearMines++;
+      }
+      if (
+        row - 1 >= 0 &&
+        column + 1 <= 2 &&
+        tiles[row - 1][column + 1].hasMine
+      ) {
+        tiles[row][column].totalNearMines++;
+      }
+      if (
+        row - 1 >= 0 &&
+        column - 1 >= 0 &&
+        tiles[row - 1][column - 1].hasMine
+      ) {
+        tiles[row][column].totalNearMines++;
+      }
+    }
+  }
+  return tiles;
 };
+
+const playableBoard = addNearMines(board.tiles);
