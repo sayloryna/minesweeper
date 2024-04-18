@@ -9,9 +9,9 @@ const createTile = (): Tile => {
 };
 
 const board: Board = {
-  rows: 3,
-  columns: 3,
-  boardDisplay: [
+  totalRows: 3,
+  totalColumns: 3,
+  tiles: [
     [createTile(), createTile(), createTile()],
     [createTile(), createTile(), createTile()],
     [createTile(), createTile(), createTile()],
@@ -20,7 +20,7 @@ const board: Board = {
 
 const searchTotalMines = (board: Board) => {
   let totalMines = 0;
-  board.boardDisplay.forEach((row) => {
+  board.tiles.forEach((row) => {
     row.forEach((tile) => {
       if (tile.hasMine === true) {
         totalMines++;

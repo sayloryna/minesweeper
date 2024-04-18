@@ -4,7 +4,7 @@ export interface Tile {
 }
 
 export interface Board {
-  rows: number;
-  columns: number;
-  boardDisplay: Tile[][];
+  totalRows: number;
+  totalColumns: number;
+  tiles: Tile[][];
 }
