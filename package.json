@@ -9,7 +9,9 @@
     "build": "tsc",
     "start": "serve public",
     "prepare": "husky",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "test": "jest src/__tests__",
+    "test:dev": "jest --watchAll src/__tests__"
   },
   "keywords": [],
   "author": "",
