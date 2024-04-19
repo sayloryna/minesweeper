@@ -19,8 +19,8 @@ const board: Board = {
 };
 
 const addNearMines = (tiles: Tile[][]) => {
-  for (let row = 0; row <= 2; row++) {
-    for (let column = 0; column <= 2; column++) {
+  for (let column = 0; column <= 2; column++) {
+    for (let row = 0; row <= 2; row++) {
       if (row + 1 <= 2 && tiles[row + 1][column].hasMine) {
         tiles[row][column].totalNearMines++;
       }
