@@ -25,8 +25,7 @@ export const failedGame = () => {
   restartButton.addEventListener("click", () => {
     gameOverBanner.classList.add("not-show");
     mainContent?.classList.remove("not-show");
-
-    createBoard(playable6x6Board);
+    addBoard(playable6x6Board);
   });
 
   gameOverBanner.appendChild(restartButton);
@@ -35,7 +34,7 @@ export const failedGame = () => {
   mainContainer?.appendChild(gameOverBanner);
 };
 
-export const createBoard = (board: Tile[][]) => {
+export const addBoard = (board: Tile[][]) => {
   const boardTable = document.createElement("ul");
   boardTable.classList.add("board");
   board.forEach((column) => {
@@ -50,6 +49,11 @@ export const createBoard = (board: Tile[][]) => {
 
       tile.addEventListener("click", () => {
         tile.classList.remove("hidden");
+        if (row.hasMine) {
+          tile.innerText = "💣";
+        } else {
+          tile.innerText = row.totalNearMines.toString();
+        }
 
         if (row.hasMine) {
           document.querySelector(".board")?.remove();
@@ -59,11 +63,6 @@ export const createBoard = (board: Tile[][]) => {
       });
 
       boardColumn.appendChild(tile);
-      if (row.hasMine) {
-        tile.innerText = "💣";
-      } else {
-        tile.innerText = row.totalNearMines.toString();
-      }
     });
     boardTable?.appendChild(boardColumn);
   });
