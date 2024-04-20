@@ -1,4 +1,3 @@
-import { playable6x6Board } from "./board.js";
 import { type Tile } from "./types.js";
 
 const boardTable = document.querySelector(".board");
@@ -6,9 +5,12 @@ const boardTable = document.querySelector(".board");
 export const createBoard = (board: Tile[][]) => {
   board.forEach((column) => {
     const boardColumn = document.createElement("tr");
-    boardTable?.appendChild(boardColumn);
     column.forEach((row) => {
       const cell = document.createElement("td");
+      cell.classList.add("tile", "hidden");
+      cell.addEventListener("click", () => {
+        cell.classList.remove("hidden");
+      });
 
       boardColumn.appendChild(cell);
       if (row.hasMine) {
@@ -20,5 +22,3 @@ export const createBoard = (board: Tile[][]) => {
     boardTable?.appendChild(boardColumn);
   });
 };
-
-createBoard(playable6x6Board);
