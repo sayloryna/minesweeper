@@ -1,4 +1,4 @@
-import { countNeighbourMines } from "../index.js";
+import { countNeighbourMines } from "../board.js";
 
 describe("Given the countNeighbourdMines function", () => {
   describe("When it recibes a board with 9 tiles where 4 tiles has mines", () => {
