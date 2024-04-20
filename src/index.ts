@@ -8,38 +8,35 @@ const createTile = (): Tile => {
   };
 };
 
-const board: Board = {
-  totalRows: 3,
-  totalColumns: 3,
+const boardOF2x2: Board = {
   tiles: [
-    [createTile(), createTile(), createTile()],
-    [createTile(), createTile(), createTile()],
-    [createTile(), createTile(), createTile()],
+    [createTile(), createTile()],
+    [createTile(), createTile()],
   ],
 };
 
-const addNearMines = (tiles: Tile[][]) => {
-  for (let column = 0; column <= 2; column++) {
-    for (let row = 0; row <= 2; row++) {
-      if (row + 1 <= 2 && tiles[row + 1][column].hasMine) {
+export const countNeighbourMines = (tiles: Tile[][]) => {
+  for (let column = 0; column < tiles.length; column++) {
+    for (let row = 0; row < tiles.length; row++) {
+      if (row + 1 < tiles.length && tiles[row + 1][column].hasMine) {
         tiles[row][column].totalNearMines++;
       }
       if (
-        row + 1 <= 2 &&
+        row + 1 < tiles.length &&
         column - 1 >= 0 &&
         tiles[row + 1][column - 1].hasMine
       ) {
         tiles[row][column].totalNearMines++;
       }
       if (
-        row + 1 <= 2 &&
-        column + 1 <= 2 &&
+        row + 1 < tiles.length &&
+        column + 1 < tiles.length &&
         tiles[row + 1][column + 1].hasMine
       ) {
         tiles[row][column].totalNearMines++;
       }
 
-      if (column + 1 <= 2 && tiles[row][column + 1].hasMine) {
+      if (column + 1 < tiles.length && tiles[row][column + 1].hasMine) {
         tiles[row][column].totalNearMines++;
       }
       if (column - 1 >= 0 && tiles[row][column - 1].hasMine) {
@@ -51,7 +48,7 @@ const addNearMines = (tiles: Tile[][]) => {
       }
       if (
         row - 1 >= 0 &&
-        column + 1 <= 2 &&
+        column + 1 < tiles.length &&
         tiles[row - 1][column + 1].hasMine
       ) {
         tiles[row][column].totalNearMines++;
@@ -68,4 +65,4 @@ const addNearMines = (tiles: Tile[][]) => {
   return tiles;
 };
 
-const playableBoard = addNearMines(board.tiles);
+const playable2x2Board = countNeighbourMines(boardOF2x2.tiles);
