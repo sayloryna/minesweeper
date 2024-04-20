@@ -8,10 +8,56 @@ const createTile = (): Tile => {
   };
 };
 
-const boardOf2x2: Board = {
+const boardOf6x6: Board = {
   tiles: [
-    [createTile(), createTile()],
-    [createTile(), createTile()],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
+    [
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+      createTile(),
+    ],
   ],
 };
 
@@ -72,4 +118,4 @@ export const countNeighbourMines = (tiles: Tile[][]) => {
   return tiles;
 };
 
-const playable2x2Board = countNeighbourMines(boardOf2x2.tiles);
+export const playable6x6Board = countNeighbourMines(boardOf6x6.tiles);
