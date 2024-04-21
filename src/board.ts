@@ -8,6 +8,19 @@ const createTile = (): Tile => {
   };
 };
 
+const getboardTotalMines = (board: Tile[][]): number => {
+  let totalMines = 0;
+  board.forEach((colum) => {
+    colum.forEach((row) => {
+      if (row.hasMine) {
+        totalMines++;
+      }
+    });
+  });
+
+  return totalMines;
+};
+
 const boardOf6x6: Board = {
   tiles: [
     [
