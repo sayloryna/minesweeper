@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
-export interface Tile {
+export type Tile = {
   hasMine: boolean;
   totalNearMines: number;
-}
+};
 
-export interface Board {
+export type Board = {
   tiles: Tile[][];
-}
+};

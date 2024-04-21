@@ -1,11 +1,54 @@
-import { playable6x6Board } from "./board.js";
+import {
+  countBoardTotalMines,
+  countBoardTotalTiles,
+  playable6x6Board,
+} from "./board.js";
 import { type Tile } from "./types.js";
-const boardContainer = document.querySelector(".board-container");
 
-const mainContent = document.querySelector(".main-content");
-const mainContainer = document.querySelector(".main-container");
+let totalTilesLeft =
+  countBoardTotalTiles(playable6x6Board) -
+  countBoardTotalMines(playable6x6Board);
 
-export const failedGame = () => {
+const boardContainer = document.querySelector(".board-container")!;
+const mainContent = document.querySelector(".main-content")!;
+const mainContainer = document.querySelector(".main-container")!;
+
+export const winGame = () => {
+  const winGameBanner = document.createElement("div");
+  const winGametext = document.createElement("p");
+  const winGameTitle = document.createElement("h2");
+  winGameBanner.classList.add("win-game");
+
+  winGameTitle.innerText = "succes".toUpperCase();
+  winGametext.innerText =
+    "¡Enhorabuena! Has encontrado todas las minas\n ¿Quieres jugar otra vez?";
+
+  winGameBanner.appendChild(winGameTitle);
+  winGameBanner.appendChild(winGametext);
+
+  const restartButton = document.createElement("button");
+  restartButton.classList.add("button__restart");
+  restartButton.innerText = "reiniciar".toUpperCase();
+
+  restartButton.addEventListener("click", () => {
+    winGameBanner.classList.add("not-show");
+    mainContent.classList.remove("not-show");
+    addBoard(playable6x6Board);
+    mainContainer.removeChild(winGameBanner);
+  });
+
+  winGameBanner.appendChild(restartButton);
+
+  mainContent.classList.add("not-show");
+
+  mainContainer.appendChild(winGameBanner);
+  document.querySelector(".board")!.remove();
+  totalTilesLeft =
+    countBoardTotalTiles(playable6x6Board) -
+    countBoardTotalMines(playable6x6Board);
+};
+
+export const failGame = () => {
   const gameOverBanner = document.createElement("div");
   const gameOverText = document.createElement("p");
   const gameOverTitle = document.createElement("h2");
@@ -24,14 +67,18 @@ export const failedGame = () => {
 
   restartButton.addEventListener("click", () => {
     gameOverBanner.classList.add("not-show");
-    mainContent?.classList.remove("not-show");
+    mainContent.classList.remove("not-show");
+
+    mainContainer.removeChild(gameOverBanner);
+    document.querySelector(".board")!.remove();
+
     addBoard(playable6x6Board);
   });
 
   gameOverBanner.appendChild(restartButton);
 
-  mainContent?.classList.add("not-show");
-  mainContainer?.appendChild(gameOverBanner);
+  mainContent.classList.add("not-show");
+  mainContainer.appendChild(gameOverBanner);
 };
 
 export const addBoard = (board: Tile[][]) => {
@@ -49,23 +96,24 @@ export const addBoard = (board: Tile[][]) => {
 
       tile.addEventListener("click", () => {
         tile.classList.remove("hidden");
+
         if (row.hasMine) {
           tile.innerText = "💣";
+
+          failGame();
         } else {
           tile.innerText = row.totalNearMines.toString();
-        }
-
-        if (row.hasMine) {
-          document.querySelector(".board")?.remove();
-
-          failedGame();
+          totalTilesLeft--;
+          if (totalTilesLeft <= 0) {
+            winGame();
+          }
         }
       });
 
       boardColumn.appendChild(tile);
     });
-    boardTable?.appendChild(boardColumn);
+    boardTable.appendChild(boardColumn);
   });
 
-  boardContainer?.appendChild(boardTable);
+  boardContainer.appendChild(boardTable);
 };
