@@ -108,7 +108,8 @@ li {
   }
 }
 
-.game-over {
+.game-over,
+.win-game {
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -117,6 +118,11 @@ li {
   background-color: var(--main-background-color);
   padding: 15px;
   border: 9px solid var(--main-border-color);
+
+  p,
+  h2 {
+    padding: 10px;
+  }
 }
 
 .button__restart {

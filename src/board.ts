@@ -8,7 +8,7 @@ const createTile = (): Tile => {
   };
 };
 
-const getboardTotalMines = (board: Tile[][]): number => {
+export const countBoardTotalMines = (board: Tile[][]): number => {
   let totalMines = 0;
   board.forEach((colum) => {
     colum.forEach((row) => {
@@ -19,6 +19,17 @@ const getboardTotalMines = (board: Tile[][]): number => {
   });
 
   return totalMines;
+};
+
+export const countBoardTotalTiles = (board: Tile[][]): number => {
+  let totalTiles = 0;
+  board.forEach((colum) => {
+    colum.forEach(() => {
+      totalTiles++;
+    });
+  });
+
+  return totalTiles;
 };
 
 const boardOf6x6: Board = {
