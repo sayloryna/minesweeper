@@ -24,7 +24,7 @@ export const countBoardTotalMines = (board: Tile[][]): number => {
 export const countBoardTotalTiles = (board: Tile[][]): number => {
   let totalTiles = 0;
   board.forEach((colum) => {
-    colum.forEach((row) => {
+    colum.forEach(() => {
       totalTiles++;
     });
   });
