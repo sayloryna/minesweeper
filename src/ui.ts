@@ -1,3 +1,4 @@
+import { error } from "console";
 import {
   countBoardTotalMines,
   countBoardTotalTiles,
@@ -19,20 +20,20 @@ const boardContainer = document.querySelector(".board-container");
 const mainContent = document.querySelector(".main-content");
 const mainContainer = document.querySelector(".main-container");
 
+if (!boardContainer || !mainContent || !mainContainer) {
+  throw new Error("missing element");
+}
+
 export const winGame = () => {
   const winGameBanner = document.createElement("div");
   const winGametext = document.createElement("p");
   const winGameTitle = document.createElement("h2");
   const restartButton = document.createElement("button");
 
-  if (mainContent) {
-    mainContent.classList.add("not-show");
-    restartButton.innerText = "reiniciar".toUpperCase();
-  }
+  mainContent.classList.add("not-show");
 
-  if (mainContainer) {
-    mainContainer.appendChild(winGameBanner);
-  }
+  restartButton.innerText = "reiniciar".toUpperCase();
+  mainContainer.appendChild(winGameBanner);
 
   winGameBanner.classList.add("win-game");
   winGameBanner.appendChild(winGameTitle);
@@ -48,15 +49,11 @@ export const winGame = () => {
   restartButton.addEventListener("click", () => {
     winGameBanner.classList.add("not-show");
 
-    if (mainContent) {
-      mainContent.classList.remove("not-show");
-    }
+    mainContent.classList.remove("not-show");
 
     document.querySelector(".board")!.remove();
 
-    if (mainContainer) {
-      mainContainer.removeChild(winGameBanner);
-    }
+    mainContainer.removeChild(winGameBanner);
 
     addBoard(playable6x6Board);
   });
@@ -70,13 +67,8 @@ export const failGame = () => {
   const gameOverTitle = document.createElement("h2");
   const restartButton = document.createElement("button");
 
-  if (mainContainer) {
-    mainContainer.appendChild(gameOverBanner);
-  }
-
-  if (mainContent) {
-    mainContent.classList.add("not-show");
-  }
+  mainContainer.appendChild(gameOverBanner);
+  mainContent.classList.add("not-show");
 
   gameOverBanner.appendChild(gameOverTitle);
   gameOverBanner.appendChild(gameOverText);
@@ -95,13 +87,9 @@ export const failGame = () => {
   restartButton.addEventListener("click", () => {
     gameOverBanner.classList.add("not-show");
 
-    if (mainContent) {
-      mainContent.classList.remove("not-show");
-    }
+    mainContent.classList.remove("not-show");
 
-    if (mainContainer) {
-      mainContainer.removeChild(gameOverBanner);
-    }
+    mainContainer.removeChild(gameOverBanner);
 
     document.querySelector(".board")!.remove();
 
@@ -149,7 +137,5 @@ export const addBoard = (board: Tile[][]) => {
     boardTable.appendChild(boardColumn);
   });
 
-  if (boardContainer) {
-    boardContainer.appendChild(boardTable);
-  }
+  boardContainer.appendChild(boardTable);
 };
