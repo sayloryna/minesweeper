@@ -35,10 +35,10 @@
     "prettier": "^3.2.5",
     "serve": "^14.2.1",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "eslint-config-prettier": "^9.1.0"
   },
   "dependencies": {
-    "eslint-config-prettier": "^9.1.0",
     "eslint-config-xo": "^0.44.0",
     "netlify": "^13.1.14"
   }
