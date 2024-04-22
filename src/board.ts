@@ -1,3 +1,13 @@
+import {
+  checkDownCenterTile,
+  checkDownLeftTile,
+  checkDownRightTile,
+  checkLeftTile,
+  checkRightTile,
+  checkUpLeftTile,
+  checkuUpcenterTile,
+  checUpRightTile,
+} from "./mine-checks.js";
 import { type Tile, type Board } from "./types.js";
 
 const createTile = (): Tile => {
@@ -85,57 +95,24 @@ const boardOf6x6: Board = {
   ],
 };
 
-// eslint-disable-next-line complexity
 export const countNeighbourMines = (tiles: Tile[][]) => {
   for (let column = 0; column < tiles.length; column++) {
     for (let row = 0; row < tiles.length; row++) {
-      if (row + 1 < tiles.length && tiles[row + 1][column].hasMine) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkuUpcenterTile(row, column, tiles);
 
-      if (
-        row + 1 < tiles.length &&
-        column - 1 >= 0 &&
-        tiles[row + 1][column - 1].hasMine
-      ) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkUpLeftTile(row, column, tiles);
 
-      if (
-        row + 1 < tiles.length &&
-        column + 1 < tiles.length &&
-        tiles[row + 1][column + 1].hasMine
-      ) {
-        tiles[row][column].totalNearMines++;
-      }
+      checUpRightTile(row, column, tiles);
 
-      if (column + 1 < tiles.length && tiles[row][column + 1].hasMine) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkRightTile(column, row, tiles);
 
-      if (column - 1 >= 0 && tiles[row][column - 1].hasMine) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkLeftTile(column, row, tiles);
 
-      if (row - 1 >= 0 && tiles[row - 1][column].hasMine) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkDownCenterTile(row, column, tiles);
 
-      if (
-        row - 1 >= 0 &&
-        column + 1 < tiles.length &&
-        tiles[row - 1][column + 1].hasMine
-      ) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkDownRightTile(row, column, tiles);
 
-      if (
-        row - 1 >= 0 &&
-        column - 1 >= 0 &&
-        tiles[row - 1][column - 1].hasMine
-      ) {
-        tiles[row][column].totalNearMines++;
-      }
+      checkDownLeftTile(row, column, tiles);
     }
   }
 
